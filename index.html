@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Number Operations</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      text-align: center;
+    }
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 20px;
+      background-color: #fff;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    h1 {
+      color: #333;
+    }
+    .rainbow {
+      background-image: linear-gradient(to right, violet, indigo, blue, green, yellow, orange, red);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: rainbowAnimation 2s linear infinite;
+    }
+
+    @keyframes rainbowAnimation {
+      0% {
+        background-position: 0%;
+      }
+      100% {
+        background-position: 200%;
+      }
+    }
+    input[type="number"] {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      box-sizing: border-box;
+    }
+    button {
+      padding: 10px 20px;
+      background-color: #007bff;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #0056b3;
+    }
+    nav {
+      margin-bottom: 20px;
+    }
+    nav ul {
+      list-style-type: none;
+      padding: 0;
+    }
+    nav ul li {
+      display: inline-block;
+      margin-right: 10px;
+    }
+    nav ul li a {
+      text-decoration: none;
+      color: #333;
+      padding: 5px 10px;
+      border-radius: 5px;
+      transition: background-color 0.3s;
+    }
+    nav ul li a:hover {
+      background-color: #007bff;
+      color: #fff;
+    }
+
+    .output-box {
+      margin-top: 20px;
+      padding: 20px;
+      border: 2px solid #007bff;
+      border-radius: 10px;
+      text-align: left;
+      background-color: #f9f9f9;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1 class="rainbow">Calculate</h1>
+    <input type="number" id="inputNumber" placeholder="Enter a number">
+    <button onclick="calculate()">Calculate</button>
+    <div id="output" class="output-box"></div>
+  </div>
+
+  <script>
+    function calculate() {
+      var inputNumber = parseFloat(document.getElementById('inputNumber').value);
+      var outputDiv = document.getElementById('output');
+      
+      if (!isNaN(inputNumber)) {
+        var output1 = Math.pow(Math.sqrt(inputNumber) + 0.5, 2);
+        var output2 = Math.pow(Math.sqrt(inputNumber) - 0.5, 2);
+        var output3 = Math.pow(Math.sqrt(output1) + 0.5, 2);
+        var output4 = Math.pow(Math.sqrt(output2) - 0.5, 2);
+
+        outputDiv.innerHTML = `
+          <div>
+            <h3>Resistance 1</h3>
+            <p>${output1.toFixed(2)}</p>
+          </div>
+          <div>
+            <h3>Resistance 2</h3>
+            <p>${output3.toFixed(2)}</p>
+          </div>
+          <div>
+            <h3>Support 1</h3>
+            <p>${output2.toFixed(2)}</p>
+          </div>
+          <div>
+            <h3>Support 2</h3>
+            <p>${output4.toFixed(2)}</p>
+          </div>
+        `;
+      } else {
+        outputDiv.innerHTML = '<p>Please enter a valid number.</p>';
+      }
+    }
+  </script>
+</body>
+</html>
